@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+.bia-bg {
+    background-image: url(image.png);
+    background-size: contain;
+}
