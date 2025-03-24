@@ -5,6 +5,7 @@ import User from "../model/User.model.js";
 export const Register = async (req, res) => {
     try {
         const { userName, email, password, rePassword } = req.body;
+        console.log(req.body);
         if (!userName || !email || !password || !rePassword) {
             return res.status(400).json({ message: "All fields are required" });
         }

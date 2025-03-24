@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Bell, Search, User, CircleHelp, LogOut } from 'lucide-react'
 import { useContent } from '../store/useContent'
 import { ORIGINAL_IMG_TMDB } from '../utils/constand'
+import { useAuth } from '../store/useAuth'
 const Header = () => {
+  const { Logout } = useAuth();
   const [isHoveredAvatar, setIsHoveredAvatar] = useState(false)
   const [isHoveredBell, setIsHoveredBell] = useState(false)
   const { getTrending, content } = useContent()
   useEffect(() => {
     getTrending()
   }, [])
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    Logout();
+    navigate("/login");
+  }
 
   return (
     <div className='relative'>
@@ -158,9 +165,9 @@ const Header = () => {
                       <CircleHelp />
                       <a href="" className='ml-2 hover:underline'> Trung tâm trợ giúp</a>
                     </div>
-                    <div className='flex  '>
+                    <div className='flex  ' onClick={handleLogOut}>
                       <LogOut />
-                      <a href="" className='ml-2 hover:underline'> Đăng xuất</a>
+                      <a href="" className='ml-2 hover:underline' > Đăng xuất</a>
                     </div>
                   </div>
                 </div>
