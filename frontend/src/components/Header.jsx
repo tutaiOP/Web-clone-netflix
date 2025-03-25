@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Bell, Search, User, CircleHelp, LogOut } from 'lucide-react'
+import { Bell, Search, User, CircleHelp, LogOut, Play, Info } from 'lucide-react'
 import { useContent } from '../store/useContent'
 import { ORIGINAL_IMG_TMDB } from '../utils/constand'
 import { useAuth } from '../store/useAuth'
@@ -159,15 +159,15 @@ const Header = () => {
                   <div className='flex flex-col '>
                     <div className='flex mb-2 '>
                       <User />
-                      <a href="" className='ml-2 hover:underline'> Tài khoản</a>
+                      <Link to={"/"} className='ml-2 hover:underline'> Tài khoản</Link>
                     </div>
                     <div className='flex mb-2 '>
                       <CircleHelp />
-                      <a href="" className='ml-2 hover:underline'> Trung tâm trợ giúp</a>
+                      <Link to={"/"} className='ml-2 hover:underline'> Trung tâm trợ giúp</Link>
                     </div>
                     <div className='flex  ' onClick={handleLogOut}>
                       <LogOut />
-                      <a href="" className='ml-2 hover:underline' > Đăng xuất</a>
+                      <Link to={"/"} href="" className='ml-2 hover:underline' > Đăng xuất</Link>
                     </div>
                   </div>
                 </div>
@@ -177,9 +177,25 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <div className='w-full'>
-        <img className='w-full h-[800px]' src={ORIGINAL_IMG_TMDB + content?.data?.backdrop_path} alt="" />
 
+      <div className='w-full'>
+        <img className='w-full h-[1000px]' src={ORIGINAL_IMG_TMDB + content?.data?.backdrop_path} alt="" />
+
+      </div>
+      <div className='absolute bottom-[20%] left-0 px-13 w-[800px] h-[400px]  bg-transparent'>
+        <h1 className='text-6xl font-extrabold text-white'>Novocaine</h1>
+        <p className='text-white my-2'>2025 | PG-13</p>
+        <p className='text-white mb-5 text-3xl'>When the girl of his dreams is kidnapped, everyman Nate turns his inability to feel pain into an unexpected strength in his fight to get her back.</p>
+        <div className='flex '>
+          <Link to={"/"} className='flex bg-white p-3 font-bold hover:opacity-80 rounded-[5px] mr-4'>
+            <Play className='mr-1' />
+            Phát
+          </Link>
+          <Link to={"/"} className='flex bg-gray-500/70 text-white p-3 font-bold hover:opacity-80 rounded-[5px]'>
+            <Info className='mr-1' />
+            Thông tin khác
+          </Link>
+        </div>
       </div>
     </div>
   )

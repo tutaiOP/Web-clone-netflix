@@ -1,6 +1,7 @@
 import React, { } from 'react'
 import Header from '../components/Header'
 import MovieSlider from '../components/MovieSlider'
+import Footer from '../components/Footer'
 
 
 const HomePage = () => {
@@ -11,7 +12,6 @@ const HomePage = () => {
     "upcoming",
 
   ]
-
   return (
     <div>
       <Header />
@@ -20,7 +20,7 @@ const HomePage = () => {
           <MovieSlider item={item} key={index} />
         )
         )}
-
+      <Footer />
     </div>
   )
 }

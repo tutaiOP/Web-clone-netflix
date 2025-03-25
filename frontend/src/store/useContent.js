@@ -15,17 +15,8 @@ export const useContent = create((set) => ({
             console.log(error);
 
         }
-    },
-
-    getMovieByCategory: async (category) => {
-        try {
-            const data = await axiosInstance.get(`/movies/${category}`);
-            set({ movieList: data.data.data.results });
-            console.log("Check list movie", data.data.data.results)
-        } catch (error) {
-            console.log(error);
-        }
     }
+
 
 })
 );

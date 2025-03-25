@@ -76,7 +76,7 @@ const Login = () => {
               <input type="checkbox" className='' />
               <span className='ml-2'>Nhớ mật khẩu</span>
             </div>
-            <a href="#" className="text-sm text-red-500 hover:underline">Quên mật khẩu?</a>
+            <Link to={"/"} className="text-sm text-red-500 hover:underline">Quên mật khẩu?</Link>
           </div>
           <div className='mt-4'>
             <span>Bạn chưa có tài khoản?</span> <Link to={"/register"} className='hover:underline'>Đăng ký.</Link>
