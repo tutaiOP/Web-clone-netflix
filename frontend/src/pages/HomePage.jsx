@@ -2,6 +2,8 @@ import React, { } from 'react'
 import Header from '../components/Header'
 import MovieSlider from '../components/MovieSlider'
 import Footer from '../components/Footer'
+import BoxImage from '../components/BoxImage'
+
 
 
 const HomePage = () => {
@@ -13,15 +15,22 @@ const HomePage = () => {
 
   ]
   return (
-    <div>
-      <Header />
-      {
-        category.map((item, index) => (
-          <MovieSlider item={item} key={index} />
-        )
-        )}
-      <Footer />
-    </div>
+    <>
+      <Header
+
+      />
+      <BoxImage />
+      <div>
+
+
+        {
+          category.map((item, index) => (
+            <MovieSlider item={item} key={index} />
+          )
+          )}
+        <Footer />
+      </div>
+    </>
   )
 }
 

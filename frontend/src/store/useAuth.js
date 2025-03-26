@@ -18,8 +18,7 @@ export const useAuth = create((set) => ({
         try {
             const respond = await axiosInstance.post("/auth/login", data);
             set({ user: respond.data.user });
-            console.log("Respond Login", respond);
-            console.log("Data", data);
+
             toast.success("Login successfully");
         } catch (error) {
             console.log(error);
@@ -40,7 +39,7 @@ export const useAuth = create((set) => ({
         try {
             const respond = await axiosInstance.get("/auth/checkauth");
             set({ user: respond.data.user });
-            console.log("Respond", respond);
+
         } catch (error) {
             console.log(error);
         }

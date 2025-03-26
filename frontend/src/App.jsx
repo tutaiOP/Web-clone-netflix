@@ -7,14 +7,18 @@ import { useAuth } from "./store/useAuth"
 import { useEffect } from "react"
 import GenresPage from "./pages/GenresPage"
 import SearchPage from "./pages/SearchPage"
+import Header from "./components/Header"
+import WatchPage from "./pages/WatchPage"
+import LatestPage from "./pages/LatestPage"
 function App() {
    const { user, checkAuth } = useAuth();
    useEffect(() => {
       checkAuth();
    }, [checkAuth])
-   console.log(user);
+
    return (
       <>
+
          <Routes>
             <Route
                path="/login" element={!user ? <Login /> : <Navigate to={"/"} />}
@@ -29,7 +33,13 @@ function App() {
                path="/genre" element={user ? <GenresPage /> : <Navigate to={"/login"} />}
             />
             <Route
-               path="/search" element={user ? <SearchPage /> : <Navigate to={"/login"} />}
+               path="/search" element={<SearchPage />}
+            />
+            <Route
+               path="/watch/:id" element={<WatchPage />}
+            />
+            <Route
+               path="/latest" element={<LatestPage />}
             />
          </Routes>
          <Toaster

@@ -15,7 +15,6 @@ import axiosInstance from '../lib/axios';
 
 
 const MovieSlider = (item) => {
-  console.log("Check item item", item.item)
 
   const [list, setList] = useState([]);
 
@@ -26,8 +25,7 @@ const MovieSlider = (item) => {
     }
     getMovie();
   }, []);
-
-  console.log("Check movieList", list)
+  console.log("List", list);
   return (
     <>
       <div className="bg-black px-13 py-4 cursor-pointer relative">
@@ -58,14 +56,17 @@ const MovieSlider = (item) => {
 
             {list.map((service) => (
               <SwiperSlide key={service.id}>
-                <div className="flex flex-col gap-2 w-auto h-auto">
-                  <img
-                    src={SMALL_URL_TMDB + service.backdrop_path}
-                    className="w-full h-[177px] object-cover rounded-lg hover:scale-105 transition duration-300"
-                    alt={service.overview} // Sử dụng nội dung cho alt
-                  />
-                  <span className="text-white text-xl truncate">{service.original_title}</span>
-                </div>
+                <Link to={`/watch/${service.id}`}>
+                  <div className="flex flex-col gap-2 w-auto h-auto"  >
+                    <img
+                      src={SMALL_URL_TMDB + service.backdrop_path}
+                      className="w-full h-[177px] object-cover rounded-lg hover:scale-105 transition duration-300"
+                      alt={service.overview} // Sử dụng nội dung cho alt
+                    />
+                    <span className="text-white text-xl truncate">{service.original_title}</span>
+                  </div>
+                </Link>
+
               </SwiperSlide>
             ))}
           </Swiper>

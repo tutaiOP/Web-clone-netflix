@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Bell, Search, User, CircleHelp, LogOut, Play, Info } from 'lucide-react'
-import { useContent } from '../store/useContent'
+
 import { ORIGINAL_IMG_TMDB } from '../utils/constand'
 import { useAuth } from '../store/useAuth'
+import { useContent } from '../store/useContent'
 const Header = () => {
   const { Logout } = useAuth();
   const [isHoveredAvatar, setIsHoveredAvatar] = useState(false)
   const [isHoveredBell, setIsHoveredBell] = useState(false)
-  const { getTrending, content } = useContent()
-  useEffect(() => {
-    getTrending()
-  }, [])
+  const [formSearch, setFormSearch] = useState("");
+  const { getSearchMovie } = useContent();
+  const navigated = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    getSearchMovie(formSearch);
+    navigated('/search');
+  }
+
   const navigate = useNavigate();
   const handleLogOut = () => {
     Logout();
@@ -20,7 +26,7 @@ const Header = () => {
 
   return (
     <div className='relative'>
-      <header className="h-[60px] flex justify-between px-13 items-center bg-transparent absolute top-0 left-0 right-0" >
+      <header className="h-[60px] flex justify-between px-13 items-center bg-transparent absolute top-0 left-0 right-0 z-10" >
         <div className='flex justify-center items-center'>
           <div>
             <Link to={"/register"} className=''><img className='w-[92px] h-8' src="logo-removebg-preview.png" alt="" /></Link>
@@ -60,10 +66,14 @@ const Header = () => {
         </div>
         <div className='text-white flex justify-center items-center'>
           <div className='flex justify-center items-center relative'>
+            <form onSubmit={handleSearch}>
+              <input type="text" id="search-navbar" value={formSearch}
+                onChange={(e) => setFormSearch(e.target.value)}
+                className="block w-full p-2 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-transparent focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
 
-            <input type="text" id="search-navbar"
-              className="block w-full p-2 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-transparent focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
-            <Search className='absolute top-[5px] left-[5px] text-white' />
+              <Search className='absolute top-[5px] left-[5px] text-white' />
+            </form>
+
           </div>
 
           <div className='relative'
@@ -178,7 +188,7 @@ const Header = () => {
         </div>
       </header>
 
-      <div className='w-full'>
+      {/* <div className='w-full'>
         <img className='w-full h-[1000px]' src={ORIGINAL_IMG_TMDB + content?.data?.backdrop_path} alt="" />
 
       </div>
@@ -196,7 +206,7 @@ const Header = () => {
             Thông tin khác
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
