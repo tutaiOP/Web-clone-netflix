@@ -8,10 +8,10 @@ export const useAuth = create((set) => ({
         try {
             const respond = await axiosInstance.post("/auth/register", data);
             set({ user: respond.user });
-            toast.success("Register successfully");
+            toast.success("Đăng ký thành công");
         } catch (error) {
             console.log(error);
-            toast.error("Register failed");
+            toast.error(error.response.data.message);
         }
     },
     Login: async (data) => {
@@ -19,20 +19,20 @@ export const useAuth = create((set) => ({
             const respond = await axiosInstance.post("/auth/login", data);
             set({ user: respond.data.user });
 
-            toast.success("Login successfully");
+            toast.success("Đăng nhập thành công");
         } catch (error) {
             console.log(error);
-            toast.error("Login failed");
+            toast.error(error.response.data.message);
         }
     },
     Logout: async () => {
         try {
             await axiosInstance.post("/auth/logout");
             set({ user: null });
-            toast.success("Logout successfully");
+            toast.success("Đăng xuất thành công");
         } catch (error) {
             console.log(error);
-            toast.error("Logout failed");
+
         }
     },
     checkAuth: async () => {
@@ -42,6 +42,7 @@ export const useAuth = create((set) => ({
 
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data.message);
         }
     },
 

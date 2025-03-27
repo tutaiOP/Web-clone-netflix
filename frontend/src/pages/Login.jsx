@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../store/useAuth'
 const Login = () => {
   const { Login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -48,7 +49,7 @@ const Login = () => {
             <div className="mb-6 relative">
               <label htmlFor="password" className="block text-sm font-medium text-gray-600">Mật khẩu</label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 value={formData.password}
@@ -57,8 +58,14 @@ const Login = () => {
                 placeholder="Nhập mật khẩu của bạn"
                 required
               />
-              <Eye className='size-6 absolute top-[40px] right-[12px] text-white' />
-              {/* <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'/> */}
+              {showPassword ? (
+                <Eye className='size-6 absolute top-[40px] right-[12px] text-white'
+                  onClick={() => setShowPassword(false)} />
+              ) : (
+                <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'
+                  onClick={() => setShowPassword(true)} />
+              )}
+
             </div>
 
             {/* Submit Button */}

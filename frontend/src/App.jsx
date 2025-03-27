@@ -33,13 +33,13 @@ function App() {
                path="/genre" element={user ? <GenresPage /> : <Navigate to={"/login"} />}
             />
             <Route
-               path="/search" element={<SearchPage />}
+               path="/search" element={user ? <SearchPage /> : <Navigate to={"/login"} />}
             />
             <Route
-               path="/watch/:id" element={<WatchPage />}
+               path="/watch/:id" element={user ? <WatchPage /> : <Navigate to={"/login"} />}
             />
             <Route
-               path="/latest" element={<LatestPage />}
+               path="/latest" element={user ? <LatestPage /> : <Navigate to={"/login"} />}
             />
          </Routes>
          <Toaster

@@ -83,4 +83,17 @@ export const getGenreMovie = async (req, res) => {
     }
 }
 
+export const getDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const data = await getDataGenresTmdb(`https://api.themoviedb.org/3/movie/${id}?language=en-US`);
+        res.status(200).json({
+            message: "Successfully getDetails",
+            data: data,
+        })
+    } catch (error) {
+        console.log("Error getDetails:", error.message);
 
+        res.status(500).json({ message: "Server error" });
+    }
+}

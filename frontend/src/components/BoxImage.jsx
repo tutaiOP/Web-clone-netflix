@@ -17,7 +17,7 @@ const BoxImage = () => {
                 <img className='w-full h-[1000px]' src={ORIGINAL_IMG_TMDB + content?.data?.backdrop_path} alt="" />
 
             </div>
-            <div className='absolute bottom-[20%] left-0 px-13 w-[800px] h-[400px]  bg-transparent'>
+            <div className='absolute bottom-[30%] left-0 px-13 w-[800px] h-[400px]  bg-transparent'>
                 <h1 className='text-6xl font-extrabold text-white'>{content?.data?.title || content?.data?.original_title}</h1>
                 <p className='text-white my-2'>2025 | PG-13</p>
                 <p className='text-white mb-5 text-3xl'>{content?.data?.overview}</p>

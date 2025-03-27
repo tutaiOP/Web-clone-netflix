@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import BoxImage from '../components/BoxImage'
 import Footer from '../components/Footer'
 import { useContent } from '../store/useContent'
+import { Link } from 'react-router-dom'
 
 const LatestPage = () => {
     const listPoUp = [
@@ -32,14 +33,17 @@ const LatestPage = () => {
                     <div className='grid grid-cols-5 gap-x-2 gap-y-20'>
 
                         {movieList.map((movie, index) => (
-                            <div key={index}>
-                                <img
-                                    className='w-full h-[177px] object-cover rounded-lg hover:scale-105 transition duration-300'
-                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} // Hiển thị ảnh từ API
-                                    alt={movie.title || "Movie Poster"}
-                                />
-                                <p className='text-white text-xl truncate'>{movie.title}</p>
-                            </div>
+                            <Link to={`/watch/${movie.id}`} key={index}>
+                                <div key={index}>
+                                    <img
+                                        className='w-full h-[177px] object-cover rounded-lg hover:scale-105 transition duration-300'
+                                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} // Hiển thị ảnh từ API
+                                        alt={movie.title || "Movie Poster"}
+                                    />
+                                    <p className='text-white text-xl truncate'>{movie.title}</p>
+                                </div>
+                            </Link>
+
                         ))}
 
 

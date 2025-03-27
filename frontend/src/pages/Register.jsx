@@ -6,7 +6,8 @@ import { useAuth } from '../store/useAuth'
 
 const Register = () => {
   const { Register } = useAuth();
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setShowRePassword] = useState(false);
   const [formData, setFormData] = useState({
     userName: '',
     email: '',
@@ -70,7 +71,7 @@ const Register = () => {
               <div className="mb-6 relative">
                 <label htmlFor="password" className="block text-sm font-medium text-gray-600">Mật khẩu</label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
@@ -79,15 +80,22 @@ const Register = () => {
                   placeholder="Nhập mật khẩu của bạn"
                   required
                 />
-                <Eye className='size-6 absolute top-[40px] right-[12px] text-white' />
-                {/* <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'/> */}
+                {showPassword ? (
+                  <Eye className='size-6 absolute top-[40px] right-[12px] text-white'
+                    onClick={() => setShowPassword(false)} />
+                ) : (
+                  <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'
+                    onClick={() => setShowPassword(true)} />
+                )}
+
+
               </div>
 
               {/* RePassword Input */}
               <div className="mb-6 relative">
                 <label htmlFor="rePassword" className="block text-sm font-medium text-gray-600">Nhập lại mật khẩu</label>
                 <input
-                  type="password"
+                  type={showRePassword ? "text" : "password"}
                   id="rePassword"
                   name="rePassword"
                   value={formData.rePassword}
@@ -96,8 +104,13 @@ const Register = () => {
                   placeholder="Nhập lại mật khẩu của bạn"
                   required
                 />
-                <Eye className='size-6 absolute top-[40px] right-[12px] text-white' />
-                {/* <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'/> */}
+                {showRePassword ? (
+                  <Eye className='size-6 absolute top-[40px] right-[12px] text-white'
+                    onClick={() => setShowRePassword(false)} />
+                ) : (
+                  <EyeOff className='size-6 absolute top-[40px] right-[12px] text-white'
+                    onClick={() => setShowRePassword(true)} />
+                )}
               </div>
 
               {/* Submit Button */}

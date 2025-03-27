@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Bell, Search, User, CircleHelp, LogOut, Play, Info } from 'lucide-react'
 
 import { ORIGINAL_IMG_TMDB } from '../utils/constand'
 import { useAuth } from '../store/useAuth'
 import { useContent } from '../store/useContent'
 const Header = () => {
+  const location = useLocation();
+
   const { Logout } = useAuth();
   const [isHoveredAvatar, setIsHoveredAvatar] = useState(false)
   const [isHoveredBell, setIsHoveredBell] = useState(false)
@@ -29,7 +31,7 @@ const Header = () => {
       <header className="h-[60px] flex justify-between px-13 items-center bg-transparent absolute top-0 left-0 right-0 z-10" >
         <div className='flex justify-center items-center'>
           <div>
-            <Link to={"/register"} className=''><img className='w-[92px] h-8' src="logo-removebg-preview.png" alt="" /></Link>
+            <Link to={"/"} className=''><img className='w-[92px] h-8' src="/logo-removebg-preview.png" alt="" /></Link>
           </div>
           <div>
             <nav className="">
@@ -38,26 +40,40 @@ const Header = () => {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                   <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border   rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
-                    <Link to={"/"} className=''>
+                    <Link to={"/"} className="">
                       <li>
-                        <span className="block py-2 px-3 text-white bg-black rounded-sm md:bg-transparent md:text-white md:p-0 dark:text-white md:dark:text-black" aria-current="page">Trang chủ</span>
+                        <span
+                          className={`block py-2 px-3 ${location.pathname === "/" ? "lg:text-red-600  md:text-red-600 text-red-600" : "lg:text-white md:text-white text-white"
+                            } bg-black rounded-sm bg-transparent text-white md:p-0 dark:text-white dark:text-black`}
+                          aria-current="page"
+                        >
+                          Trang chủ
+                        </span>
                       </li>
                     </Link>
-                    <Link to={"/genre"} className=''>
+                    <Link to={"/genre"} className="">
                       <li>
-                        <span className="block py-2 px-3 text-white bg-black rounded-sm md:bg-transparent md:text-white md:p-0 dark:text-white md:dark:text-black" aria-current="page">Series</span>
+                        <span
+                          className={`block py-2 px-3 ${location.pathname === "/genre" ? "lg:text-red-600  md:text-red-600 text-red-600" : "lg:text-white  md:text-white text-white"
+                            } bg-black rounded-sm bg-transparent text-white md:p-0 dark:text-white dark:text-black`}
+                          aria-current="page"
+                        >
+                          Series
+                        </span>
                       </li>
                     </Link>
-                    <Link to={"/latest"} className=''>
+                    <Link to={"/latest"} className="">
                       <li>
-                        <span className="block py-2 px-3 text-white bg-black rounded-sm md:bg-transparent md:text-white md:p-0 dark:text-white md:dark:text-black" aria-current="page">Mới & phổ biến</span>
+                        <span
+                          className={`block py-2 px-3 ${location.pathname === "/latest" ? "lg:text-red-600  md:text-red-600 text-red-600 " : "lg:text-white  md:text-white text-white"
+                            } bg-black rounded-sm bg-transparent text-white md:p-0 dark:text-white dark:text-black`}
+                          aria-current="page"
+                        >
+                          Mới & phổ biến
+                        </span>
                       </li>
                     </Link>
-                    <Link to={"/my-list"} className=''>
-                      <li>
-                        <span className="block py-2 px-3 text-white bg-black rounded-sm md:bg-transparent md:text-white md:p-0 dark:text-white md:dark:text-black" aria-current="page">Danh sách của tôi</span>
-                      </li>
-                    </Link>
+
                   </ul>
                 </div>
               </div>

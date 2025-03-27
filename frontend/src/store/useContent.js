@@ -7,6 +7,7 @@ export const useContent = create((set) => ({
     movieId: [],
     search: [],
     popular: [],
+    details: [],
 
     getTrending: async () => {
 
@@ -60,6 +61,14 @@ export const useContent = create((set) => ({
             console.log(error);
         }
     },
+    getDetails: async (query) => {
+        try {
+            const data = await axiosInstance.get(`/movies/${query}/details`);
+            set({ details: data.data.data });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 })
 );
